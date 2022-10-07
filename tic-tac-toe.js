@@ -2,12 +2,12 @@ window.onload = begin
 var box
 const arr = ["","","","","","","","",""]
 var wrong = true
+var done = false
 function begin ()
 {
     var bttn
     box = document.getElementById("board").children
     bttn = document.getElementsByClassName('btn')[0]
-    console.log(bttn)
     
     for (let bx of box){
         bx.classList.add("square")
@@ -21,20 +21,26 @@ function begin ()
 
 function start(event)
 {
-   index = Array.from(box).indexOf(event.target)
+    if (done == false){
+        index = Array.from(box).indexOf(event.target)
 
-   if (wrong == true)
-   {
-    box[index].innerHTML = "X";
-    box[index].classList.add('X')
-    wrong = false
-   } else {
-    box[index].innerHTML = "O"
-    box[index].classList.add('O')
-    wrong = true
-   }
-    arr[index]= box[index].innerHTML
-    winner()
+        if (wrong == true && box[index].innerHTML == '')
+        {
+            box[index].innerHTML = "X";
+            box[index].classList.add('X')
+            wrong = false
+        } else if (wrong == false && box[index].innerHTML == ''){
+            box[index].innerHTML = "O"
+            box[index].classList.add('O')
+            wrong = true
+        }
+            arr[index]= box[index].innerHTML
+            winner()
+            console.log(done)
+    }
+
+
+
 }
 
 function mouse(event){
@@ -58,7 +64,8 @@ function winner(){
                 w[0]++ 
                 if (w[0] == 3){
                     document.getElementById('status').classList.add('you-won')
-                    document.getElementById('status').innerHTML = 'Congratulations! X is the Winner!'   
+                    document.getElementById('status').innerHTML = 'Congratulations! X is the Winner!'
+                    done = true   
                 }
             }
 
@@ -66,7 +73,8 @@ function winner(){
                 w[1]++ 
                 if (w[1] == 3){
                     document.getElementById('status').classList.add('you-won')
-                    document.getElementById('status').innerHTML = 'Congratulations! O is the Winner!'   
+                    document.getElementById('status').innerHTML = 'Congratulations! O is the Winner!' 
+                    done = true  
                 }
             }
         }
@@ -76,7 +84,12 @@ function winner(){
 }
 
 function restart(event){
-    if (event){
-        location.reload()
+    for (let check of arr){
+        if (check != ''){
+            if (event){
+                location.reload()
+            }
+        }
     }
 }
+
