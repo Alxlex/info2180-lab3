@@ -4,8 +4,10 @@ const arr = ["","","","","","","","",""]
 var wrong = true
 function begin ()
 {
+    var bttn
     box = document.getElementById("board").children
-    
+    bttn = document.getElementsByClassName('btn')[0]
+    console.log(bttn)
     
     for (let bx of box){
         bx.classList.add("square")
@@ -13,6 +15,8 @@ function begin ()
         bx.addEventListener('mouseover', mouse)
         bx.addEventListener('mouseout', mouse)
     }
+    
+    bttn.addEventListener('click', restart)
 }
 
 function start(event)
@@ -31,8 +35,6 @@ function start(event)
    }
     arr[index]= box[index].innerHTML
     winner()
-
-    //  console.log(arr[index])
 }
 
 function mouse(event){
@@ -70,5 +72,11 @@ function winner(){
         }
         w[0] = 0
         w[1] = 0
+    }
+}
+
+function restart(event){
+    if (event){
+        location.reload()
     }
 }
