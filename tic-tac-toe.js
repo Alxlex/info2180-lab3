@@ -21,7 +21,6 @@ function begin ()
 
 function start(event)
 {
-    console.log("sdfsdfsdf")
     if (done == false){
         index = Array.from(box).indexOf(event.target)
 
@@ -84,15 +83,7 @@ function winner(){
     }
 }
 
-function restart(event){
-    for (let check of arr){
-        if (check != ''){
-            if (event){
-                location.reload()
-            }
-        }
-    }
-}
+
 
 function restart(){
     arr = ["","","","","","","","",""]
