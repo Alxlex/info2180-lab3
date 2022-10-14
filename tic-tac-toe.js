@@ -1,6 +1,6 @@
-window.onload = begin
+window.onload = begin;
 var box
-const arr = ["","","","","","","","",""]
+var arr = ["","","","","","","","",""]
 var wrong = true
 var done = false
 function begin ()
@@ -21,6 +21,7 @@ function begin ()
 
 function start(event)
 {
+    console.log("sdfsdfsdf")
     if (done == false){
         index = Array.from(box).indexOf(event.target)
 
@@ -93,3 +94,16 @@ function restart(event){
     }
 }
 
+function restart(){
+    arr = ["","","","","","","","",""]
+    wrong = true
+    done = false
+
+    for (let bo of box){
+        bo.classList.remove("X")
+        bo.classList.remove("O")
+        document.getElementById('status').classList.remove('you-won')
+        document.getElementById('status').innerHTML = 'Move your mouse over a square and click to play an X or an O.' 
+        bo.innerHTML = ''
+    }
+}
